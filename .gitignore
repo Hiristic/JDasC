@@ -1,0 +1,8 @@
+# Idea
+.idea/
+*.iml
+.vscode/
+
+# Jenkins
+jobs/
+master.key

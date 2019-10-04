@@ -1,0 +1,188 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          id: "server_login"
+          password: "{AQAAABAAAAAQqMdSYiMtuL4Bncn1uMZT1PQNEEFrNkSMPL2BU9JI3QM=}"
+          scope: GLOBAL
+          username: "jenkins_admin"
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  disableRememberMe: false
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  nodes:
+  - permanent:
+      labelString: "linux_server"
+      launcher:
+        ssh:
+          credentialsId: "server_login"
+          host: "192.168.12.12"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "slave_node"
+      numExecutors: 1
+      remoteFS: "/var/jenkins"
+      retentionStrategy: "always"
+  numExecutors: 2
+  primaryView:
+    list:
+      columns:
+      - "status"
+      - "weather"
+      - "jobName"
+      - "lastSuccess"
+      - "lastFailure"
+      - "lastDuration"
+      - "buildButton"
+      - "favoriteColumn"
+      includeRegex: ".*demo.*"
+      name: "Demo jobs"
+      recurse: true
+  projectNamingStrategy: "standard"
+  quietPeriod: 0
+  remotingSecurity:
+    enabled: false
+  scmCheckoutRetryCount: 0
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - list:
+      columns:
+      - "status"
+      - "weather"
+      - "jobName"
+      - "lastSuccess"
+      - "lastFailure"
+      - "lastDuration"
+      - "buildButton"
+      - "favoriteColumn"
+      includeRegex: ".*demo.*"
+      name: "Demo jobs"
+      recurse: true
+  - list:
+      columns:
+      - "status"
+      - "weather"
+      - "jobName"
+      - "lastSuccess"
+      - "lastFailure"
+      - "lastDuration"
+      - "buildButton"
+      - "favoriteColumn"
+      includeRegex: ".*dev.*"
+      name: "Development"
+      recurse: true
+  - list:
+      columns:
+      - "status"
+      - "weather"
+      - "jobName"
+      - "lastSuccess"
+      - "lastFailure"
+      - "lastDuration"
+      - "buildButton"
+      - "favoriteColumn"
+      includeRegex: ".*prod.*"
+      name: "Production"
+      recurse: true
+  - list:
+      columns:
+      - "status"
+      - "weather"
+      - "jobName"
+      - "lastSuccess"
+      - "lastFailure"
+      - "lastDuration"
+      - "buildButton"
+      - "favoriteColumn"
+      includeRegex: ".*test.*"
+      name: "Test"
+      recurse: true
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  downloadSettings:
+    useBrowser: false
+  sSHD:
+    port: -1
+  dockerSettings:
+    cloudOrder: "asIs"
+  extendedEmailPublisher:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:\r\n\r\nCheck\
+      \ console output at $BUILD_URL to view the results."
+    defaultContentType: "text/plain"
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: 0
+    precedenceBulk: false
+    useSsl: false
+    watchingEnabled: false
+  gitHubPluginConfig:
+    hookUrl: "http://localhost:8080/github-webhook/"
+  gitSCM:
+    createAccountBasedOnEmail: false
+  globalLibraries:
+    libraries:
+    - defaultVersion: "master"
+      implicit: true
+      name: "global-lib"
+      retriever:
+        modernSCM:
+          scm:
+            git:
+              id: "335bd065-49ce-459f-be72-60491c5c49eb"
+              remote: "https://github.com/Hiristic/Jenkins-global-lib.git"
+              traits:
+              - "branchDiscoveryTrait"
+              - refSpecs:
+                  templates:
+                  - value: "+refs/heads/*:refs/remotes/@{remote}/*"
+                  - value: "+refs/changes/*:refs/changes/*"
+                  - value: "+refs/changes/*:refs/remotes/@{remote}/*"
+  globalSettings:
+    failOnCorrupt: false
+    noAuthors: false
+    quietMode: false
+  ivyBuildTrigger:
+    extendedVersionMatching: false
+  location:
+    adminAddress: "danijelhir@hotmail.com"
+    url: "http://localhost:8080/"
+  logstashConfiguration:
+    enableGlobally: false
+    enabled: true
+    logstashIndexer:
+      elasticSearch:
+        mimeType: "application/json"
+        uri: "http://localhost:9200/jenkins_logs/_doc"
+    milliSecondTimestamps: true
+  mavenModuleSet:
+    localRepository: "default"
+  pollSCM:
+    pollingThreadCount: 10
+  timestamperConfig:
+    allPipelines: true
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"

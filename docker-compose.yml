@@ -1,0 +1,38 @@
+version: '3.5'
+
+services:
+
+  jenkins:
+    image: jenkins
+    environment:
+      CONF_ALLOW_RUNS_ON_MASTER: 'true'
+    build:
+      context: .
+    ports:
+    - target: 8080
+      published: 8080
+    - target: 50000
+      published: 50000
+    volumes:
+    - type: bind
+      source: '/var/run/docker.sock'
+      target: '/var/run/docker.sock'
+      read_only: true
+    - type: bind
+      source: '${PWD}/jenkins.yaml'       # To enable changes to config file without rebuilding the container
+      target: '/var/jenkins_home/jenkins.yaml'
+      read_only: false
+    - type: bind
+      source: '${PWD}/jobs'       # Specify a permanent path on sever
+      target: '/var/jenkins_home/jobs'
+      read_only: false
+#    - type: bind
+#      source: '/<foldername>/master.key' # Specify a restricted folder on sever
+#      target: '/var/jenkins_home/secrets/master.key'
+#      read_only: true
+    networks:
+    - jenkins-network
+    tty: true
+
+networks:
+  jenkins-network:
