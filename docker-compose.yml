@@ -27,7 +27,7 @@ services:
       target: '/var/jenkins_home/jobs'
       read_only: false
 #    - type: bind
-#      source: '/<foldername>/master.key' # Specify a restricted folder on sever
+#      source: '/<foldername>/master.key' # Move the key from repo to a restricted folder and specify the path here 
 #      target: '/var/jenkins_home/secrets/master.key'
 #      read_only: true
     networks:
