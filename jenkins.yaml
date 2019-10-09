@@ -118,24 +118,13 @@ security:
     useBrowser: false
   sSHD:
     port: -1
+unclassified:
+  artifactoryBuilder:
+    useCredentialsPlugin: false
+  buildStepOperation:
+    enabled: false
   dockerSettings:
     cloudOrder: "asIs"
-  extendedEmailPublisher:
-    adminRequiredForTemplateTesting: false
-    allowUnregisteredEnabled: false
-    charset: "UTF-8"
-    debugMode: false
-    defaultBody: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:\r\n\r\nCheck\
-      \ console output at $BUILD_URL to view the results."
-    defaultContentType: "text/plain"
-    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
-    maxAttachmentSize: -1
-    maxAttachmentSizeMb: 0
-    precedenceBulk: false
-    useSsl: false
-    watchingEnabled: false
-  gitHubPluginConfig:
-    hookUrl: "http://localhost:8080/github-webhook/"
   gitSCM:
     createAccountBasedOnEmail: false
   globalLibraries:
@@ -150,16 +139,11 @@ security:
               id: "335bd065-49ce-459f-be72-60491c5c49eb"
               remote: "https://github.com/Hiristic/Jenkins-global-lib.git"
               traits:
-              - "branchDiscoveryTrait"
               - refSpecs:
                   templates:
                   - value: "+refs/heads/*:refs/remotes/@{remote}/*"
                   - value: "+refs/changes/*:refs/changes/*"
                   - value: "+refs/changes/*:refs/remotes/@{remote}/*"
-  globalSettings:
-    failOnCorrupt: false
-    noAuthors: false
-    quietMode: false
   ivyBuildTrigger:
     extendedVersionMatching: false
   location:
@@ -173,8 +157,6 @@ security:
         mimeType: "application/json"
         uri: "http://localhost:9200/jenkins_logs/_doc"
     milliSecondTimestamps: true
-  mavenModuleSet:
-    localRepository: "default"
   pollSCM:
     pollingThreadCount: 10
   timestamperConfig:
