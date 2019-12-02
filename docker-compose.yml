@@ -8,6 +8,8 @@ services:
       CONF_ALLOW_RUNS_ON_MASTER: 'true'
     build:
       context: .
+    user: jenkins
+    container_name: jenkins
     ports:
     - target: 8080
       published: 8080
