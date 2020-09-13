@@ -6,6 +6,8 @@ extra_java_opts=( \
   '-Djenkins.model.Jenkins.slaveAgentPortEnforce=true' \
   "-Dio.jenkins.dev.security.allowRunsOnMaster=${CONF_ALLOW_RUNS_ON_MASTER}" \
   '-Dhudson.model.LoadStatistics.clock=1000' \
+  '-Dhudson.security.csrf.GlobalCrumbIssuerConfiguration=true' \
+  '-Dmail.smtp.starttls.enable=true' \
 )
 
 export JAVA_OPTS="$JAVA_OPTS ${extra_java_opts[@]}"

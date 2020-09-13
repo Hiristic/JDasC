@@ -109,15 +109,6 @@ jenkins:
   - all:
       name: "all"
   viewsTabBar: "standard"
-security:
-  apiToken:
-    creationOfLegacyTokenEnabled: false
-    tokenGenerationOnCreationEnabled: false
-    usageStatisticsEnabled: true
-  downloadSettings:
-    useBrowser: false
-  sSHD:
-    port: -1
 unclassified:
   artifactoryBuilder:
     useCredentialsPlugin: false
@@ -159,10 +150,10 @@ unclassified:
     milliSecondTimestamps: true
   pollSCM:
     pollingThreadCount: 10
-  timestamperConfig:
-    allPipelines: true
-    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
-    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+  simple-theme-plugin:
+    elements:
+    - cssUrl:
+        url: "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-blue.css"
 tool:
   git:
     installations:
