@@ -4,7 +4,7 @@ LABEL Description="This container will setup Jenkins with Docker, install plugin
 
 USER root
 RUN apt-get update -y && \
-    apt-get install -y awscli jq gettext-base tree vim zip git maven emacs
+    apt-get install -y awscli jq gettext-base tree vim zip git maven emacs sshpass
 
 USER jenkins
 
