@@ -24,17 +24,18 @@ services:
       source: '${PWD}/jenkins.yaml'       # To enable changes to config file without rebuilding the container
       target: '/var/jenkins_home/jenkins.yaml'
       read_only: false
+    - type: bind
+      source: '${PWD}/jobs'       # Specify a permanent path on sever
+      target: '/var/jenkins_home/jobs'
+      read_only: false
 #    - type: bind
-#      source: '${PWD}/jobs'       # Specify a permanent path on sever
-#      target: '/var/jenkins_home/jobs'
-#      read_only: false
-#    - type: bind
-#      source: '/<foldername>/master.key' # Move the key from repo to a restricted folder and specify the path here 
+#      source: '${PWD}/key/master.key' # Move the key from repo to a restricted folder and specify the path here 
 #      target: '/var/jenkins_home/secrets/master.key'
-#      read_only: true
+#      read_only: false
     networks:
-    - jenkins-network
+    - heuristic-network
     tty: true
 
 networks:
-  jenkins-network:
+  heuristic-network:
+    external: true
