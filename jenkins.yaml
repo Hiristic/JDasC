@@ -4,14 +4,26 @@ credentials:
     - credentials:
       - usernamePassword:
           id: "server_login"
-          password: "{AQAAABAAAAAQqMdSYiMtuL4Bncn1uMZT1PQNEEFrNkSMPL2BU9JI3QM=}"
+          password: "{AQAAABAAAAAQMVKpDlcuA35CY/fCq6wnISnb7KeVvjJXpbE8MblNTF8=}"
           scope: GLOBAL
           username: "jenkins_admin"
 jenkins:
   agentProtocols:
   - "JNLP4-connect"
   - "Ping"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
   disableRememberMe: false
+  disabledAdministrativeMonitors:
+  - "jenkins.security.s2m.MasterKillSwitchWarning"
+  labelAtoms:
+  - name: "linux_server"
+  - name: "master"
+  - name: "slave_node"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
@@ -21,11 +33,10 @@ jenkins:
       launcher:
         ssh:
           credentialsId: "server_login"
-          host: "192.168.12.12"
+          host: "172.17.0.1"
           port: 22
           sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
       name: "slave_node"
-      numExecutors: 1
       remoteFS: "/var/jenkins"
       retentionStrategy: "always"
   numExecutors: 2
@@ -48,6 +59,24 @@ jenkins:
   remotingSecurity:
     enabled: false
   scmCheckoutRetryCount: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: "jenkins_admin"
+        name: "jenki"
+        properties:
+        - "myView"
+        - "timezone"
+        - "apiToken"
+        - favoriting:
+            autofavoriteEnabled: true
+        - mailer:
+            emailAddress: "jenkins@admin.se"
+        - "favorite"
+        - preferredProvider:
+            providerId: "default"
   slaveAgentPort: 50000
   updateCenter:
     sites:
@@ -109,15 +138,80 @@ jenkins:
   - all:
       name: "all"
   viewsTabBar: "standard"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  sSHD:
+    port: -1
+  scriptApproval:
+    approvedSignatures:
+    - "method groovy.json.JsonSlurperClassic parseText java.lang.String"
+    - "new groovy.json.JsonSlurperClassic"
 unclassified:
   artifactoryBuilder:
+    jfrogPipelinesServer:
+      bypassProxy: false
+      connectionRetries: 3
+      credentialsConfig:
+        ignoreCredentialPluginDisabled: true
+        overridingCredentials: false
+        password: "{AQAAABAAAAAQJgsFSYhhRFNpeA2OiHSZYCZXdLhYGyrYUnzueTQGIpA=}"
+        username: "****"
+      timeout: 300
     useCredentialsPlugin: false
+  bitbucketEndpointConfiguration:
+    endpoints:
+    - bitbucketCloudEndpoint:
+        enableCache: false
+        manageHooks: false
+        repositoriesCacheDuration: 0
+        teamCacheDuration: 0
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
   buildStepOperation:
     enabled: false
+  defaultFolderConfiguration:
+    healthMetrics:
+    - worstChildHealthMetric:
+        recursive: true
   dockerSettings:
     cloudOrder: "asIs"
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+    defaultContentType: "text/plain"
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    defaultTriggerIds:
+    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    mailAccount:
+      smtpPassword: "{AQAAABAAAAAQLB/GU3MOZCXuOeapFof9ybn+Ru5AH9MoLuMKXGDbr90=}"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: -1
+    precedenceBulk: false
+    watchingEnabled: false
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "http://localhost:8080/github-webhook/"
   gitSCM:
+    allowSecondFetch: false
     createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
   globalLibraries:
     libraries:
     - defaultVersion: "master"
@@ -137,23 +231,36 @@ unclassified:
                   - value: "+refs/changes/*:refs/remotes/@{remote}/*"
   ivyBuildTrigger:
     extendedVersionMatching: false
+  junitTestResultStorage:
+    storage: "file"
   location:
     adminAddress: "danijelhir@hotmail.com"
-    url: "http://localhost:8080/"
+    url: "http://3.120.226.57:8080/"
   logstashConfiguration:
     enableGlobally: false
     enabled: true
     logstashIndexer:
       elasticSearch:
         mimeType: "application/json"
+        password: "{AQAAABAAAAAQhFMYmqoiewAO127f5Tm0rZ7w5f3h9b5mGmRpwCPGWTk=}"
         uri: "http://localhost:9200/jenkins_logs/_doc"
     milliSecondTimestamps: true
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  mavenModuleSet:
+    localRepository: "default"
   pollSCM:
     pollingThreadCount: 10
   simple-theme-plugin:
     elements:
     - cssUrl:
         url: "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-blue.css"
+  timestamper:
+    allPipelines: true
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
 tool:
   git:
     installations:
