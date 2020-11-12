@@ -5,5 +5,5 @@
 
 # Jenkins
 jobs/
-#users/
-#master.key
+users/
+master.key

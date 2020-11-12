@@ -11,9 +11,6 @@ jenkins:
   agentProtocols:
   - "JNLP4-connect"
   - "Ping"
-  authorizationStrategy:
-    loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
@@ -59,24 +56,6 @@ jenkins:
   remotingSecurity:
     enabled: false
   scmCheckoutRetryCount: 0
-  securityRealm:
-    local:
-      allowsSignup: false
-      enableCaptcha: false
-      users:
-      - id: "jenkins_admin"
-        name: "Jenki"
-        properties:
-        - "apiToken"
-        - favoriting:
-            autofavoriteEnabled: true
-        - "favorite"
-        - "myView"
-        - preferredProvider:
-            providerId: "default"
-        - "timezone"
-        - mailer:
-            emailAddress: "jenkins@admin.se"
   slaveAgentPort: 50000
   updateCenter:
     sites:
