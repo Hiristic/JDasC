@@ -4,7 +4,7 @@ credentials:
     - credentials:
       - usernamePassword:
           id: "server_login"
-          password: "{AQAAABAAAAAQMVKpDlcuA35CY/fCq6wnISnb7KeVvjJXpbE8MblNTF8=}"
+          password: "{AQAAABAAAABAr4hRnQHtHpycyd5GppBUX5PGdnqkFw4bDBHRUXA31Z9nnmNmf7tLM0ciMO0byFie85D2n5pntQ6bVESr4fpJMzwk7tJDuFWlQQ8jHK7zt24=}"
           scope: GLOBAL
           username: "jenkins_admin"
 jenkins:
@@ -65,18 +65,18 @@ jenkins:
       enableCaptcha: false
       users:
       - id: "jenkins_admin"
-        name: "jenki"
+        name: "Jenki"
         properties:
-        - "myView"
-        - "timezone"
         - "apiToken"
         - favoriting:
             autofavoriteEnabled: true
-        - mailer:
-            emailAddress: "jenkins@admin.se"
         - "favorite"
+        - "myView"
         - preferredProvider:
             providerId: "default"
+        - "timezone"
+        - mailer:
+            emailAddress: "jenkins@admin.se"
   slaveAgentPort: 50000
   updateCenter:
     sites:
@@ -157,7 +157,6 @@ unclassified:
       credentialsConfig:
         ignoreCredentialPluginDisabled: true
         overridingCredentials: false
-        password: "{AQAAABAAAAAQJgsFSYhhRFNpeA2OiHSZYCZXdLhYGyrYUnzueTQGIpA=}"
         username: "****"
       timeout: 300
     useCredentialsPlugin: false
@@ -193,7 +192,7 @@ unclassified:
     defaultTriggerIds:
     - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
     mailAccount:
-      smtpPassword: "{AQAAABAAAAAQLB/GU3MOZCXuOeapFof9ybn+Ru5AH9MoLuMKXGDbr90=}"
+      smtpPassword: "{AQAAABAAAABAwb1L+yY8MdNTaglkmMDkIL8PLrlTbn5jsGj6mEhFd1YNVHUWquyonhWPrRTXlm96G2ogVoIQZqkNcKQX3RA3lycLBSuppaE+kZh3dQwaHH0=}"
     maxAttachmentSize: -1
     maxAttachmentSizeMb: -1
     precedenceBulk: false
@@ -242,7 +241,7 @@ unclassified:
     logstashIndexer:
       elasticSearch:
         mimeType: "application/json"
-        password: "{AQAAABAAAAAQhFMYmqoiewAO127f5Tm0rZ7w5f3h9b5mGmRpwCPGWTk=}"
+        password: "{AQAAABAAAABA9tQSYXSZfAmj0pkAiuhywJJATGNATjCukfejuahMXn4RJPdUi7IU1AjpOfdafOArJu5f/Jg5oTyH0m8Y4y9cbGZU8VOCAnJa8QrQBUlGTSQ=}"
         uri: "http://localhost:9200/jenkins_logs/_doc"
     milliSecondTimestamps: true
   mailer:
